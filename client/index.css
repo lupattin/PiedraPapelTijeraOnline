@@ -1,0 +1,15 @@
+body{
+    box-sizing: border-box;
+    background: url("./images/fondo.png");
+    
+}
+
+/* Hago un container para ordenar mas facil los elementos en todas las paginas */
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 667px;
+    
+}

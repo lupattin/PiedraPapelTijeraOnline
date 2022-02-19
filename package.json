@@ -1,0 +1,21 @@
+{
+  "name": "desafiodesdecero",
+  "version": "1.0.0",
+  "source": "client/index.html",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.3.0"
+  },
+  "scripts": {
+    "dev": "parcel",
+    "server": "ts-node ./server/index.ts"
+  },
+  "dependencies": {
+    "@vaadin/router": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "firebase": "^9.6.7",
+    "firebase-admin": "^10.0.2",
+    "process": "^0.11.10"
+  }
+}
