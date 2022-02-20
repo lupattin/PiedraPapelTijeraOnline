@@ -19,8 +19,9 @@ const port = 3000
 
 app.get('/room/:roomid', (req, res) => {
   const roomid = req.params.roomid  
+  const roomidToNumber = Number(roomid)
   
-  roomsCollection.where("roomid", "==", roomid).get().then((e)=>{
+  roomsCollection.where("id", "==", roomidToNumber).get().then((e)=>{
     if(e.empty){
       res.status(404).json({
         message:"room not found"
