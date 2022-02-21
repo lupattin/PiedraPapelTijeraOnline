@@ -13,6 +13,11 @@ type Room = {
   id: number,
   owner: string
 }
+type onlineRoom = {
+  owner:string,
+  owneronline:boolean,
+  invited:string
+}
 /* URL, RLTB y STATE */
 
 const API_BASE_URL = "http://localhost:3000"
@@ -24,7 +29,7 @@ export const state = {
   data: {
     users:{} as User,
     rooms:{} as Room,
-    onlineRoom:{},
+    onlineRoom:{} as onlineRoom,
     currentGame: {
       myPlay: "",
       computerPlay: "",
@@ -87,8 +92,8 @@ export const state = {
     })
   },
 
-  connectToRoom(roomid){
-    return fetch(API_BASE_URL + "/room/" + roomid, {
+  connectToRoom(roomid, userName){
+    return fetch(API_BASE_URL + "/room/" + roomid + "/" + userName, {
       method: "get",
     })
     .then((r)=>{

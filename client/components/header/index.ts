@@ -12,20 +12,24 @@ class Headercomp extends HTMLElement {
             const currentState = state.getState()
             const userName = currentState.users.nombre
             const roomId = currentState.rooms.id
-            var invitedName= "contrincante"
-
+            
+            
             div.innerHTML = `
             <div class="contenedor-header">
-                 <div class="contenedor-nombres">
+                <div class="contenedor-nombres">
                     <p class="jugador-owner">${userName}</p>
-                    <p class="jugador-invitado">${invitedName}</p>
-                 </div>
-                 <div class="contenedor-sala">
+                    <p class="jugador-invitado"></p>
+                </div>
+                <div class="contenedor-sala">
                     <p class="sala">Sala</p>
                     <p class="sala-codigo">${roomId}</p>
                 </div>
             </div>
             `
+            const pEl = div.querySelector(".jugador-invitado")
+            pEl.textContent = this.textContent
+
+            
  
             style.innerHTML = `
             .contenedor-header{

@@ -17,8 +17,9 @@ const port = 3000
 
 /* RUTAS GET */
 
-app.get('/room/:roomid', (req, res) => {
+app.get('/room/:roomid/:username', (req, res) => {
   const roomid = req.params.roomid  
+  const userName = req.params.username  
   const roomidToNumber = Number(roomid)
   
   roomsCollection.where("id", "==", roomidToNumber).get().then((e)=>{
@@ -26,12 +27,16 @@ app.get('/room/:roomid', (req, res) => {
       res.status(404).json({
         message:"room not found"
       })
-    }else{res.json({
-      message:"Room Encontrada"
+    }else{ 
+      res.send("Room Encontrada")
+      const roomRef = realtimeDatabase.ref("rooms/" + roomid)
+      roomRef.update({
+        invited: userName,
+        invitedonline: true
+       })
+      }
     })
-    }
   })
-})
 /* RUTAS POST */
 
 app.post('/user', function (req, res) {

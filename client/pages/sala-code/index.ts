@@ -48,8 +48,10 @@ class SalaCode extends HTMLElement {
         formShadowEL.addEventListener("submit",(e)=>{
             e.preventDefault()
             state.setUser(inputNameShadowEL.value).then(()=>{
-                state.connectToRoom(inputRoomShadowEL.value).then((r)=>{
-                   
+                state.connectToRoom(inputRoomShadowEL.value, inputNameShadowEL.value).then((r)=>{
+                   if(r == "ok"){
+                       Router.go("home-page")
+                   }
                 })
             })
         })
