@@ -16,8 +16,12 @@ type Room = {
 type onlineRoom = {
   owner:string,
   owneronline:boolean,
-  invited:string
+  invited:string,
+  invitedonline: boolean,
+  ownerplay:string,
+  invitedplay:string
 }
+type Jugada = "piedra" | "papel" | "tijera";
 /* URL, RLTB y STATE */
 
 const API_BASE_URL = "http://localhost:3000"
@@ -32,7 +36,7 @@ export const state = {
     onlineRoom:{} as onlineRoom,
     currentGame: {
       myPlay: "",
-      computerPlay: "",
+      invitedPlay: "",
     },
     history: {
       previousGames: { won: [], lost: [] },
@@ -98,6 +102,10 @@ export const state = {
     })
     .then((r)=>{
         if(r.statusText == "OK"){
+          this.data.rooms = {
+            id: roomid,
+            owner: userName
+          }
           return "ok"
       }
     })
@@ -112,6 +120,20 @@ export const state = {
           cb();
          }
       });
+  },
+  setMove(move: Jugada, username:string, roomid:string, cb?) {
+    const currentState = state.getState().currentGame;
+    currentState.myPlay = move;
+    return fetch(API_BASE_URL + "/room/" + roomid + "/" + username + "/" + move,{
+      method: "post",
+      headers: {
+        "content-type": "application/json"
+      },
+      }).then((response)=>{
+        response.json()
+      }).then((data)=>{
+        console.log(data)
+      })
   },
   
   subscribe(callback: (any: any) => any) {

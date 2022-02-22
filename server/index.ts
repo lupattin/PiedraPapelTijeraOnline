@@ -1,6 +1,7 @@
 import { baseDeDatos, realtimeDatabase } from "./database"
 import * as cors from "cors"
 import * as express from "express"
+import { send } from "process";
 
 /* Inicio Express */
 const app = express()
@@ -17,6 +18,7 @@ const port = 3000
 
 /* RUTAS GET */
 
+/* Actualiza el ingreso del invitado */
 app.get('/room/:roomid/:username', (req, res) => {
   const roomid = req.params.roomid  
   const userName = req.params.username  
@@ -37,6 +39,31 @@ app.get('/room/:roomid/:username', (req, res) => {
       }
     })
   })
+  /* Actualiza la jugada del jugador */
+app.post('/room/:roomid/:username/:play', (req, res) => {
+  const roomid = req.params.roomid  
+  const userName = req.params.username  
+  const userPlay = req.params.play  
+  
+      const roomRef = realtimeDatabase.ref("rooms/" + roomid)
+      roomRef.get().then((snap)=>{
+        const data = snap.val()
+          if(userName == data.owner){
+            roomRef.update({
+              ownerplay: userPlay,
+             }).then(()=>{
+              res.send(data)
+             })
+          }else if(userName == data.invited){
+            roomRef.update({
+              invitedplay: userPlay,
+             }).then(()=>{
+              res.send("Jugada actualizada")
+             })
+          }
+      })
+})
+  
 /* RUTAS POST */
 
 app.post('/user', function (req, res) {

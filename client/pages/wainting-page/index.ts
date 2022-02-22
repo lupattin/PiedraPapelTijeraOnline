@@ -1,30 +1,23 @@
 import { Router } from "@vaadin/router";
 import { state } from "../../state";
-class Roompage extends HTMLElement {
+class Waiting extends HTMLElement {
     shadow: ShadowRoot
-    nombreInvitado: string
     constructor() {
       super(); 
-      this.listenroom()
       this.shadow = this.attachShadow({mode: 'open'});
+      this.render()
     }
-    connectedCallback(){
-        state.subscribe(()=>{
-            this.render()
-        })
-    }
+    
     render(){
         /* Agrego elementos */
         
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-                <header-comp>Contrincante</header-comp>
+                <header-comp>${state.getState().onlineRoom.invited}</header-comp>
             
-                <text-comp variant = "paragraph">Compartí el codigo ${state.getState().rooms.id } con tu contrincante.</text-comp>
-                <text-comp variant = "paragraph">Y esperalo para comenzar ...</text-comp>
+                <text-comp variant = "paragraph">Esperando a que ${state.getState().onlineRoom.invited} haga su jugada.</text-comp>
                 
-        
                 <div class="container-images">
                     <imagen-el type = "piedra"></imagen-el>
                     <imagen-el type = "papel"></imagen-el>
@@ -48,17 +41,8 @@ class Roompage extends HTMLElement {
         this.shadow.appendChild(div)
         this.shadow.appendChild(style)
 
-        /* Logica Para cuando ingresa el invitado cambie de pagina */
-        
-        if(state.getState().onlineRoom.invited){
-            Router.go("/instructions")
-        }
+        /* Logica del boton */
     }
-    listenroom(){
-        const roomid = state.getState().rooms.id
-        
-        state.listeningRoom(roomid)
-        
-    }
+    
   }
-customElements.define("roompage-comp", Roompage);  
+customElements.define("waiting-comp", Waiting);  
