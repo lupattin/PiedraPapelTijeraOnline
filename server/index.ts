@@ -52,13 +52,21 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
             roomRef.update({
               ownerplay: userPlay,
              }).then(()=>{
-              res.send(data)
+              roomRef.get().then((snap)=>{
+                const dataNueva = snap.val()
+                console.log(dataNueva)
+                res.send(dataNueva)
+              })
              })
           }else if(userName == data.invited){
             roomRef.update({
               invitedplay: userPlay,
              }).then(()=>{
-              res.send("Jugada actualizada")
+              roomRef.get().then((snap)=>{
+                const dataNueva = snap.val()
+                console.log(dataNueva)
+                res.send(dataNueva)
+              })
              })
           }
       })
