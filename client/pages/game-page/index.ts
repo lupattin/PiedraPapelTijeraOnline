@@ -38,7 +38,7 @@ class Gamepage extends HTMLElement {
         this.shadow.appendChild(div)
         this.shadow.appendChild(style)
 
-        /* Logica de la elleccion de la jugada */
+        /* Logica de la eleccion de la jugada */
        
         const username = state.getState().users.nombre
         const roomid = state.getState().rooms.id

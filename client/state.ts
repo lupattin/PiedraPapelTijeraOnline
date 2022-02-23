@@ -3,6 +3,7 @@ import { getDatabase, ref, onValue, set} from "firebase/database";
 
 
 
+
 /* TIPADOS */
 type User = {
   name:string
@@ -129,11 +130,10 @@ export const state = {
       headers: {
         "content-type": "application/json"
       },
-      }).then((response)=>{
-        response.json()
-      }).then((data)=>{
-        console.log(data)
-      })
+      }).then(response=> response.json()).then(response =>
+        console.log(response)
+        
+      )
   },
   
   subscribe(callback: (any: any) => any) {
