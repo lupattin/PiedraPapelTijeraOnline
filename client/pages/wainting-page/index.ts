@@ -7,7 +7,11 @@ class Waiting extends HTMLElement {
       this.shadow = this.attachShadow({mode: 'open'});
       this.render()
     }
-    
+    connectedCallback(){
+        state.subscribe(()=>{
+            this.render()
+        })
+    }
     render(){
         /* Agrego elementos */
         
@@ -42,6 +46,11 @@ class Waiting extends HTMLElement {
         this.shadow.appendChild(style)
 
         /* Logica del boton */
+        const currentGame = state.getState().onlineRoom
+        console.log(currentGame)
+        if(currentGame.invitedplay && currentGame.ownerplay){
+            Router.go("results-page")
+        }
     }
     
   }

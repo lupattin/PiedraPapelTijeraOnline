@@ -130,9 +130,9 @@ export const state = {
       headers: {
         "content-type": "application/json"
       },
-      }).then(response=> response.json()).then(response =>
-        console.log(response)
-        
+      }).then(response=> response.json()).then(response =>{
+        return response
+      }  
       )
   },
   

@@ -14,8 +14,7 @@ import "./pages/room-page"
 import "./pages/instructions"
 import "./pages/game-page"
 import "./pages/wainting-page"
-
-
+import "./pages/result-page"
 
 
 

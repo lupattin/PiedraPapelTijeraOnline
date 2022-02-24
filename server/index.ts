@@ -54,7 +54,6 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
              }).then(()=>{
               roomRef.get().then((snap)=>{
                 const dataNueva = snap.val()
-                console.log(dataNueva)
                 res.send(dataNueva)
               })
              })
@@ -64,7 +63,6 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
              }).then(()=>{
               roomRef.get().then((snap)=>{
                 const dataNueva = snap.val()
-                console.log(dataNueva)
                 res.send(dataNueva)
               })
              })

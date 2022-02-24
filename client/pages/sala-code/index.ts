@@ -1,4 +1,5 @@
 import { Router } from "@vaadin/router";
+import { stat } from "fs";
 import { state } from "../../state";
 class SalaCode extends HTMLElement {
     constructor() {
@@ -47,7 +48,9 @@ class SalaCode extends HTMLElement {
         const inputNameShadowEL=<HTMLInputElement> buttonEl.shadowRoot.querySelector(".inputdos")
         formShadowEL.addEventListener("submit",(e)=>{
             e.preventDefault()
+            state.listeningRoom(inputRoomShadowEL.value)
             state.setUser(inputNameShadowEL.value).then(()=>{
+                console.log(state.getState())
                 state.connectToRoom(inputRoomShadowEL.value, inputNameShadowEL.value).then((r)=>{
                    if(r == "ok"){
                        Router.go("instructions")

@@ -48,8 +48,9 @@ class Gamepage extends HTMLElement {
         e.stopPropagation;
         const move = ev.getAttribute("type");
         if (move == "piedra") {
-             state.setMove("piedra",username, roomid)
-             Router.go("waiting-page")
+             state.setMove("piedra",username, roomid).then(()=>{
+                 Router.go("waiting-page")
+             })
         } else if (move == "papel") {
              state.setMove("papel",username, roomid).then(()=>{
                 Router.go("waiting-page")

@@ -44,7 +44,7 @@ class Instructions extends HTMLElement {
         this.shadow.appendChild(style)
 
         /* Logica del boton */
-
+        console.log(state.getState())
         const buttonNuevaPartidaEl = this.shadow.getElementById("button-jugar")
         buttonNuevaPartidaEl.addEventListener("click", ()=>{
             Router.go("game-page")
