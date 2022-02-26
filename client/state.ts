@@ -1,12 +1,9 @@
 import {rtdb} from "./db"
 import { getDatabase, ref, onValue, set} from "firebase/database";
 
-
-
-
 /* TIPADOS */
 type User = {
-  name:string
+  nombre:string
   id:string
 }
 
@@ -23,6 +20,12 @@ type onlineRoom = {
   invitedplay:string
 }
 type Jugada = "piedra" | "papel" | "tijera";
+
+type Game = { 
+ myPlay: Jugada; invitedPlay: Jugada
+};
+
+type Result = "win" | "lose";
 /* URL, RLTB y STATE */
 
 const API_BASE_URL = "http://localhost:3000"
@@ -124,7 +127,13 @@ export const state = {
   },
   setMove(move: Jugada, username:string, roomid:string, cb?) {
     const currentState = state.getState().currentGame;
-    currentState.myPlay = move;
+    if(this.data.users.nombre == this.data.onlineRoom.owner){
+      currentState.myPlay = move;
+      this.data.onlineRoom.ownerplay = move;
+    }else{
+      currentState.invitedPlay = move;
+      this.data.onlineRoom.invitedplay = move;
+    }
     return fetch(API_BASE_URL + "/room/" + roomid + "/" + username + "/" + move,{
       method: "post",
       headers: {
@@ -134,6 +143,52 @@ export const state = {
         return response
       }  
       )
+  },
+  pushToHistory(play: Game, result: Result) {
+    const currentState = state.getState();
+    if (result == "win") {
+      currentState.history.previousGames.won.push(play);
+    } else {
+      currentState.history.previousGames.lost.push(play);
+    }
+
+    state.setState(currentState);
+  },
+  whoWins(myPlay, invitedPlay) {
+    if (myPlay == invitedPlay) {
+      return 2;
+    }
+    const ganeConPiedra = myPlay == "piedra" && invitedPlay == "tijera";
+    const ganeConPapel = myPlay == "papel" && invitedPlay == "piedra";
+    const ganeConTijeras = myPlay == "tijera" && invitedPlay == "papel";
+
+    const gane = [ganeConPapel, ganeConPiedra, ganeConTijeras].includes(true);
+
+    const perdiConPiedra = myPlay == "piedra" && invitedPlay == "papel";
+    const perdiConPapel = myPlay == "papel" && invitedPlay == "tijera";
+    const perdiConTijeras = myPlay == "tijera" && invitedPlay == "piedra";
+
+    const perdi = [perdiConPapel, perdiConPiedra, perdiConTijeras].includes(
+      true
+    );
+
+    if (gane) {
+      state.pushToHistory({ myPlay, invitedPlay }, "win");
+       if(this.data.users.nombre == this.data.onlineRoom.owner){
+        return 0
+      }else {
+        return 1
+      }
+    }
+
+    if (perdi) {
+      state.pushToHistory({ myPlay, invitedPlay }, "lose");
+      if(this.data.users.nombre == this.data.onlineRoom.owner){
+        return 1
+      }else {
+        return 0
+      }
+    }
   },
   
   subscribe(callback: (any: any) => any) {

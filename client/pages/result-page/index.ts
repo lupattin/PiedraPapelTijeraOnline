@@ -14,7 +14,7 @@ class Result extends HTMLElement {
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-        <imagen-el class="computer-choice" computer type=${
+        <imagen-el class="invited-choice" computer type=${
           state.getState().onlineRoom.invitedplay}></imagen-el>
         <imagen-el class="my-choice" myplay type=${state.getState().onlineRoom.ownerplay} ></imagen-el>
     </div>
@@ -35,9 +35,23 @@ class Result extends HTMLElement {
         this.shadow.appendChild(div)
         this.shadow.appendChild(style)
 
-        /* Logica del boton */
+        /* Cronometro de 3 seg para ir al resultado */
+        
+        const invitedPlay = div.querySelector(".invited-choice").getAttribute("type")
+        
+        const myPlay = this.shadow.querySelector(".my-choice").getAttribute("type")
 
-       
+     
+        setTimeout(() => {
+          const results = state.whoWins(invitedPlay, myPlay);
+          if (results == 2) {
+              Router.go("game-page");
+          } else if (results == 1) {
+              Router.go("win-page");
+          } else {
+              Router.go("loss-page");
+          }
+        }, 3000);
     }
     
   }

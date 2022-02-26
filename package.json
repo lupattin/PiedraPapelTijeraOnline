@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "parcel",
+    "build": "parcel build",
     "server": "ts-node ./server/index.ts"
   },
   "dependencies": {

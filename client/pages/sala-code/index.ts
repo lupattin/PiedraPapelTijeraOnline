@@ -50,7 +50,6 @@ class SalaCode extends HTMLElement {
             e.preventDefault()
             state.listeningRoom(inputRoomShadowEL.value)
             state.setUser(inputNameShadowEL.value).then(()=>{
-                console.log(state.getState())
                 state.connectToRoom(inputRoomShadowEL.value, inputNameShadowEL.value).then((r)=>{
                    if(r == "ok"){
                        Router.go("instructions")

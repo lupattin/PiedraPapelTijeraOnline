@@ -2,6 +2,7 @@ import {Router} from '@vaadin/router';
 
 const router = new Router(document.querySelector('.root'));
 router.setRoutes([
+  {path: '/', component: 'homepage-comp'},
   {path: '/home-page', component: 'homepage-comp'},
   {path: '/new-game', component: 'newuser-comp'},
   {path: '/sala-code', component: 'salacode-comp'},
@@ -10,5 +11,7 @@ router.setRoutes([
   {path: '/game-page', component: 'game-comp'},
   {path: '/waiting-page', component: 'waiting-comp'},
   {path: '/results-page', component: 'result-comp'},
+  {path: '/win-page', component: 'win-comp'},
+  {path: '/loss-page', component: 'loss-comp'},
   
 ]);

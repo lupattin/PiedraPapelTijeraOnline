@@ -39,6 +39,9 @@ app.get('/room/:roomid/:username', (req, res) => {
       }
     })
   })
+  
+  /* RUTAS POST */
+  
   /* Actualiza la jugada del jugador */
 app.post('/room/:roomid/:username/:play', (req, res) => {
   const roomid = req.params.roomid  
@@ -69,9 +72,6 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
           }
       })
 })
-  
-/* RUTAS POST */
-
 app.post('/user', function (req, res) {
     const newUserDoc = usersCollection.doc()
     newUserDoc.create(req.body).then(()=>{
