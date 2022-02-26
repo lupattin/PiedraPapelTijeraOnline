@@ -7,9 +7,10 @@
     "parcel": "^2.3.0"
   },
   "scripts": {
-    "dev": "parcel",
-    "build": "parcel build",
-    "server": "ts-node ./server/index.ts"
+    "dev:front": "parcel",
+    "dev:back": "node ./server/index.js",
+    "build": "parcel build && tsc ./server/index.ts",
+    "start": "yarn dev:front && yarn dev:back"
   },
   "dependencies": {
     "@types/node": "^17.0.21",
@@ -19,6 +20,7 @@
     "firebase": "^9.6.7",
     "firebase-admin": "^10.0.2",
     "node-fetch": "^3.2.0",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "typescript": "^4.5.5"
   }
 }
