@@ -8,9 +8,11 @@
   },
   "scripts": {
     "dev:front": "parcel",
+    "build:front": "parcel build",
+    "build:api": "tsc ./server/index.ts",
     "dev:back": "node ./server/index.js",
-    "build": "parcel build && tsc ./server/index.ts",
-    "start": "yarn dev:front && yarn dev:back"
+    "build": "yarn build:front && yarn build:api",
+    "start": "yarn dev:back"
   },
   "dependencies": {
     "@types/node": "^17.0.21",

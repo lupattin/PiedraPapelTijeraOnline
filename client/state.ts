@@ -59,7 +59,7 @@ export const state = {
   },
   
   setUser(name:string,){
-    return fetch(API_BASE_URL + "/user", {
+    return fetch("/user", {
     method: "post",
     headers: {
       "content-type": "application/json"
@@ -77,7 +77,7 @@ export const state = {
   },
 
   createNewRoom(roomid, user){
-    return fetch(API_BASE_URL + "/room", {
+    return fetch("/room", {
       method: "post",
       headers: {
         "content-type": "application/json"
@@ -87,7 +87,7 @@ export const state = {
         owner: user
       })
       }).then(() => {
-        fetch(API_BASE_URL + "/room/" + roomid + "/" + user,{
+        fetch("/room/" + roomid + "/" + user,{
       method: "post",
       headers: {
         "content-type": "application/json"
@@ -101,7 +101,7 @@ export const state = {
   },
 
   connectToRoom(roomid, userName){
-    return fetch(API_BASE_URL + "/room/" + roomid + "/" + userName, {
+    return fetch("/room/" + roomid + "/" + userName, {
       method: "get",
     })
     .then((r)=>{
@@ -134,7 +134,7 @@ export const state = {
       currentState.invitedPlay = move;
       this.data.onlineRoom.invitedplay = move;
     }
-    return fetch(API_BASE_URL + "/room/" + roomid + "/" + username + "/" + move,{
+    return fetch("/room/" + roomid + "/" + username + "/" + move,{
       method: "post",
       headers: {
         "content-type": "application/json"
