@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev:front": "parcel",
+    "server":"ts-node ./server/index.ts",
     "build:front": "parcel build",
     "build:api": "tsc ./server/index.ts",
     "dev:back": "node ./server/index.js",

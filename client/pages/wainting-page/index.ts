@@ -47,7 +47,6 @@ class Waiting extends HTMLElement {
 
         /* Logica del boton */
         const currentGame = state.getState().onlineRoom
-        console.log(currentGame)
         if(currentGame.invitedplay && currentGame.ownerplay){
             Router.go("results-page")
         }

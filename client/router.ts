@@ -11,6 +11,7 @@ router.setRoutes([
   {path: '/game-page', component: 'game-comp'},
   {path: '/waiting-page', component: 'waiting-comp'},
   {path: '/results-page', component: 'result-comp'},
+  {path: '/tied-page', component: 'tied-comp'},
   {path: '/win-page', component: 'win-comp'},
   {path: '/loss-page', component: 'loss-comp'},
   

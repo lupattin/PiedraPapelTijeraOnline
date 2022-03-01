@@ -40,10 +40,11 @@ class Losspage extends HTMLElement {
         /* Logica del boton */
         const buttonNuevaPartidaEl = this.shadow.getElementById("button-volver-a-jugar")
         buttonNuevaPartidaEl.addEventListener("click", ()=>{
-            const currentState = state.getState().onlineRoom
-            delete currentState.invitedplay
-            delete currentState.ownerplay
-            Router.go("instructions")
+            const roomid = state.getState().rooms.id
+            state.eliminitePlayerPlays(roomid).then(()=>{
+
+                Router.go("instructions")
+            })
             })
     }
     

@@ -31,7 +31,7 @@ app.get('/room/:roomid/:username', (req, res) => {
         message:"room not found"
       })
     }else{ 
-      res.send("Room Encontrada")
+      res.send(e.docs[0].data())
       const roomRef = realtimeDatabase.ref("rooms/" + roomid)
       roomRef.update({
         invited: userName,
@@ -100,6 +100,15 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
           }).then(()=>{
             res.send("Room Created")
           })
+        })
+        /* Ruta Delete */
+        app.delete("/room/:roomid", function (req , res){
+          const roomid = req.params.roomid
+          const roomRefInvited = realtimeDatabase.ref("rooms/" + roomid + "/invitedplay")
+          const roomRefOwner = realtimeDatabase.ref("rooms/" + roomid + "/ownerplay")
+          roomRefOwner.remove()
+          roomRefInvited.remove()
+          res.send("Jugadas Eliminadas")
         })
         /* Ruta para heroku para SPA*/
         app.get("*",( req, res ) =>{

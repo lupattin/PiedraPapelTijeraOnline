@@ -16,6 +16,7 @@ import "./pages/instructions"
 import "./pages/game-page"
 import "./pages/wainting-page"
 import "./pages/result-page"
+import "./pages/tied-page"
 import "./pages/win-page"
 import "./pages/loss-page"
 

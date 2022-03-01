@@ -45,7 +45,7 @@ class Result extends HTMLElement {
         setTimeout(() => {
           const results = state.whoWins(invitedPlay, myPlay);
           if (results == 2) {
-              Router.go("game-page");
+              Router.go("tied-page");
           } else if (results == 1) {
               Router.go("win-page");
           } else {

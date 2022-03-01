@@ -10,11 +10,19 @@ class Instructions extends HTMLElement {
     
     render(){
         /* Agrego elementos */
+        const user = state.getState().users.nombre
+        const currentState = state.getState().onlineRoom.owner
         
+         if(user == currentState){
+            var invitedName = state.getState().onlineRoom.invited
+        }else{
+            var invitedName = state.getState().onlineRoom.owner
+        }
+
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-                <header-comp>${state.getState().onlineRoom.invited}</header-comp>
+                <header-comp>${invitedName}</header-comp>
             
                 <text-comp variant = "paragraph">Presioná jugar
                 y elegí: piedra, papel o tijera antes de que pasen los 3 segundos.</text-comp>
@@ -44,7 +52,7 @@ class Instructions extends HTMLElement {
         this.shadow.appendChild(style)
 
         /* Logica del boton */
-       console.log(state.getState())
+       
         const buttonNuevaPartidaEl = this.shadow.getElementById("button-jugar")
         buttonNuevaPartidaEl.addEventListener("click", ()=>{
             

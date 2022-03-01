@@ -99,6 +99,17 @@ export const state = {
       }
     })
   },
+  eliminitePlayerPlays(roomid){
+    const currentState = state.getState().onlineRoom
+    delete currentState.invitedplay
+    delete currentState.ownerplay
+    return fetch(API_BASE_URL + "/room/" + roomid, {
+      method: "delete",
+    }).then((resp)=>{
+      return resp
+    })
+
+  },
 
   connectToRoom(roomid, userName){
     return fetch("/room/" + roomid + "/" + userName, {
@@ -106,11 +117,13 @@ export const state = {
     })
     .then((r)=>{
         if(r.statusText == "OK"){
-          this.data.rooms = {
-            id: roomid,
-            owner: userName
-          }
-          return "ok"
+          r.json().then((r)=>{
+            this.data.rooms = {
+              id: roomid,
+              owner: r.owner
+            }
+            return "ok"
+          })
       }
     })
   },

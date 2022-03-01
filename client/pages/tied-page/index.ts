@@ -1,6 +1,6 @@
 import { Router } from "@vaadin/router";
 import { state } from "../../state";
-class Winpage extends HTMLElement {
+class Tiedpage extends HTMLElement {
     shadow: ShadowRoot
     constructor() {
       super(); 
@@ -9,12 +9,12 @@ class Winpage extends HTMLElement {
     }
     render(){
         /* Agrego elementos */
-        const ganasteResultURL = require("url:../../images/Star1.png");
+        const empateResultURL = require("url:../../images/Empate.png");
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
             
-            <img width="255px" src="${ganasteResultURL}">
+            <img width="255px" src="${empateResultURL}">
             <div class="match-results__image-text"></div>
             
             <score-comp></score-comp>
@@ -48,4 +48,4 @@ class Winpage extends HTMLElement {
             })
    }
   }
-customElements.define("win-comp", Winpage);  
+customElements.define("tied-comp", Tiedpage);  

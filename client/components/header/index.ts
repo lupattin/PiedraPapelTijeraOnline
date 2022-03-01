@@ -12,7 +12,7 @@ class Headercomp extends HTMLElement {
             const currentState = state.getState()
             const userName = currentState.users.nombre
             const roomId = currentState.rooms.id
-            
+           
             
             div.innerHTML = `
             <div class="contenedor-header">
