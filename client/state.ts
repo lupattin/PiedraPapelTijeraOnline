@@ -103,7 +103,7 @@ export const state = {
     const currentState = state.getState().onlineRoom
     delete currentState.invitedplay
     delete currentState.ownerplay
-    return fetch(API_BASE_URL + "/room/" + roomid, {
+    return fetch("/room/" + roomid, {
       method: "delete",
     }).then((resp)=>{
       return resp
