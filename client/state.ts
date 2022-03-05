@@ -112,6 +112,8 @@ export const state = {
   },
 
   connectToRoom(roomid, userName){
+    const currentState = state.getState()
+    currentState.rooms.id = roomid
     return fetch("/room/" + roomid + "/" + userName, {
       method: "get",
     })
