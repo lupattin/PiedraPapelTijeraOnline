@@ -167,7 +167,6 @@ export const state = {
       currentState.history.previousGames.lost.push(play);
     }
 
-    state.setState(currentState);
   },
   whoWins(myPlay, invitedPlay) {
     if (myPlay == invitedPlay) {

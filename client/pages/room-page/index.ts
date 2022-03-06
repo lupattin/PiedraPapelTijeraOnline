@@ -10,6 +10,7 @@ class Roompage extends HTMLElement {
     }
     connectedCallback(){
         state.subscribe(()=>{
+            console.log("soy el suscribe de roompage")
             this.render()
         })
     }
