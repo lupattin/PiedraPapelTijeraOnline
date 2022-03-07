@@ -99,6 +99,14 @@ export const state = {
       }
     })
   },
+  invitedOff(roomid){
+    return fetch("/invitedoff/" + roomid, {
+      method: "post",
+      headers: {
+        "content-type": "application/json"
+      },
+    })
+  },
   eliminitePlayerPlays(roomid){
     const currentState = state.getState().onlineRoom
     delete currentState.invitedplay

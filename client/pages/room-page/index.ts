@@ -7,11 +7,15 @@ class Roompage extends HTMLElement {
       super(); 
       this.listenroom()
       this.shadow = this.attachShadow({mode: 'open'});
+      this.render()
     }
     connectedCallback(){
         state.subscribe(()=>{
-            console.log("soy el suscribe de roompage")
-            this.render()
+            if(state.getState().onlineRoom.invitedonline == false){
+               const nada = "no hago nada"
+            }else if(state.getState().onlineRoom.invitedonline == true){
+                this.render()
+            }
         })
     }
     render(){
@@ -51,8 +55,11 @@ class Roompage extends HTMLElement {
 
         /* Logica Para cuando ingresa el invitado cambie de pagina */
         
-        if(state.getState().onlineRoom.invited){
-            Router.go("/instructions")
+        if(state.getState().onlineRoom.invitedonline == true){
+            const roomid = state.getState().rooms.id
+            state.invitedOff(roomid).then(()=>{
+                Router.go("instructions")
+            })
         }
     }
     listenroom(){

@@ -95,10 +95,23 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
           roomsRtdbRef.update({
             [roomid]:{
               owner: user,
-              owneronline: true
+              owneronline: true,
+              invitedonline: false
             }
           }).then(()=>{
             res.send("Room Created")
+          })
+        })
+        /* Si no funciona ELIMINAR ESTA RUTA */
+        app.post('/invitedoff/:roomid', function (req, res) {
+          const roomid = req.params.roomid
+          const roomRef = realtimeDatabase.ref("rooms/" + roomid)
+          roomRef.update({
+            
+              invitedonline: false
+            
+          }).then(()=>{
+            res.send("Invited Off")
           })
         })
         /* Ruta Delete */
@@ -110,6 +123,7 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
           roomRefInvited.remove()
           res.send("Jugadas Eliminadas")
         })
+        
         /* Ruta para heroku para SPA*/
         app.get("*",( req, res ) =>{
           res.send(__dirname + "/dist/index.html")
