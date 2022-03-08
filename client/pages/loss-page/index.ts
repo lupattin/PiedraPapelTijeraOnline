@@ -42,7 +42,10 @@ class Losspage extends HTMLElement {
         buttonNuevaPartidaEl.addEventListener("click", ()=>{
             const roomid = state.getState().rooms.id
             state.eliminitePlayerPlays(roomid).then(()=>{
-
+                const array = state.listeners
+                
+                array.splice(0, array.length)
+                
                 Router.go("instructions")
             })
             })

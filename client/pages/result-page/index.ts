@@ -10,14 +10,14 @@ class Result extends HTMLElement {
     
     render(){
         /* Agrego elementos */
-        
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-        <imagen-el class="invited-choice" computer type=${
-          state.getState().onlineRoom.invitedplay}></imagen-el>
-        <imagen-el class="my-choice" myplay type=${state.getState().onlineRoom.ownerplay} ></imagen-el>
-    </div>
+          <imagen-el class="invited-choice" computer type=${state.getState().onlineRoom.invitedplay}></imagen-el>
+          <div class="nombre-jugador">${state.getState().onlineRoom.invited}</div>
+          <div class="nombre-jugador">${state.getState().onlineRoom.owner}</div>
+          <imagen-el class="my-choice" myplay type=${state.getState().onlineRoom.ownerplay} ></imagen-el>
+        </div>
     `;
         /* Agrego CCS */
     const style = document.createElement("style")
@@ -28,8 +28,15 @@ class Result extends HTMLElement {
             justify-content: space-between;
             align-items: center;
             flex-direction: column;
-            height: 782px;
-            
+            height: 782px;    
+        }
+        .nombre-jugador{
+          font-family: 'Lora', serif;
+          font-size: 60px;
+          margin: 34px 34px;
+          color: #009048;
+          font-weight: 700;
+          text-align: center;
         }
         `
         this.shadow.appendChild(div)

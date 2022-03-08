@@ -149,6 +149,7 @@ export const state = {
       });
   },
   setMove(move: Jugada, username:string, roomid:string, cb?) {
+    
     const currentState = state.getState().currentGame;
     if(this.data.users.nombre == this.data.onlineRoom.owner){
       currentState.myPlay = move;
@@ -177,6 +178,7 @@ export const state = {
 
   },
   whoWins(myPlay, invitedPlay) {
+    
     if (myPlay == invitedPlay) {
       return 2;
     }

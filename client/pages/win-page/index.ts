@@ -9,6 +9,7 @@ class Winpage extends HTMLElement {
     }
     render(){
         /* Agrego elementos */
+        
         const ganasteResultURL = require("url:../../images/Star1.png");
         const div = document.createElement("div")
         div.innerHTML=`
@@ -42,7 +43,10 @@ class Winpage extends HTMLElement {
         buttonNuevaPartidaEl.addEventListener("click", ()=>{
             const roomid = state.getState().rooms.id
             state.eliminitePlayerPlays(roomid).then(()=>{
-
+                const array = state.listeners
+                
+                array.splice(0, array.length)
+                
                 Router.go("instructions")
             })
             })

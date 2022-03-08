@@ -6,12 +6,13 @@ class Waiting extends HTMLElement {
       super(); 
       this.shadow = this.attachShadow({mode: 'open'});
       this.render()
+      state.subscribe(()=>{
+        this.render()
+        
+
+    })
     }
-    connectedCallback(){
-        state.subscribe(()=>{
-            this.render()
-        })
-    }
+    
     render(){
         /* Agrego elementos */
         
