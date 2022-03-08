@@ -52,11 +52,24 @@ class Result extends HTMLElement {
         setTimeout(() => {
           const results = state.whoWins(invitedPlay, myPlay);
           if (results == 2) {
+            const roomid = state.getState().rooms.id
+            state.eliminitePlayerPlays(roomid).then(()=>{
+
               Router.go("tied-page");
+            })
+        
           } else if (results == 1) {
+            const roomid = state.getState().rooms.id
+            state.eliminitePlayerPlays(roomid).then(()=>{
+
               Router.go("win-page");
+            })
           } else {
+            const roomid = state.getState().rooms.id
+            state.eliminitePlayerPlays(roomid).then(()=>{
+
               Router.go("loss-page");
+            })
           }
         }, 3000);
     }

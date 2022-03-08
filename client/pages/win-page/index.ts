@@ -41,14 +41,13 @@ class Winpage extends HTMLElement {
         /* Logica del boton */
         const buttonNuevaPartidaEl = this.shadow.getElementById("button-volver-a-jugar")
         buttonNuevaPartidaEl.addEventListener("click", ()=>{
-            const roomid = state.getState().rooms.id
-            state.eliminitePlayerPlays(roomid).then(()=>{
+            
                 const array = state.listeners
                 
                 array.splice(0, array.length)
                 
                 Router.go("instructions")
-            })
+            
             })
    }
   }
