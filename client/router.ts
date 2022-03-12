@@ -7,6 +7,7 @@ router.setRoutes([
   {path: '/new-game', component: 'newuser-comp'},
   {path: '/sala-code', component: 'salacode-comp'},
   {path: '/room-page', component: 'roompage-comp'},
+  {path: '/logging-page', component: 'logging-comp'},
   {path: '/instructions', component: 'instructions-comp'},
   {path: '/game-page', component: 'game-comp'},
   {path: '/waiting-page', component: 'waiting-comp'},

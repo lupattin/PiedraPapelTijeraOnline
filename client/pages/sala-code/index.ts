@@ -14,7 +14,7 @@ class SalaCode extends HTMLElement {
         shadow.innerHTML=`
         <div class="container">
             <text-comp variant = "title">Piedra, Papel o Tijera.</text-comp>
-            <button-el type="doble-label-button" label="Ingresa tu codigo" label-dos="Ingresa tu nombre" button="Empezar" id="button"></button-el>
+            <button-el type="doble-label-button" label="Ingresa tu codigo" label-dos="Ingresa tu nombre" button="Continuar" id="button"></button-el>
             <div class="container-images">
                 <imagen-el type = "piedra"></imagen-el>
                 <imagen-el type = "papel"></imagen-el>
@@ -52,7 +52,7 @@ class SalaCode extends HTMLElement {
             state.setUser(inputNameShadowEL.value).then(()=>{
                 state.connectToRoom(inputRoomShadowEL.value, inputNameShadowEL.value).then(()=>{
                    
-                       Router.go("instructions")
+                       Router.go("logging-page")
                 })
             })
         })
