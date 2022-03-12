@@ -18,7 +18,6 @@ const roomsRtdbRef = realtimeDatabase.ref("rooms")
 const port = process.env.PORT || 3000
 
 /* RUTAS GET */
-
 /* Actualiza el ingreso del invitado */
 app.get('/room/:roomid/:username', (req, res) => {
   const roomid = req.params.roomid  

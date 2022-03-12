@@ -10,7 +10,7 @@ class Headercomp extends HTMLElement {
             const div = document.createElement("div")
             const style = document.createElement("style")
             const currentState = state.getState()
-            const userName = currentState.users.nombre
+            const userName = this.getAttribute("owner-name")
             const roomId = currentState.rooms.id
            
             
@@ -28,6 +28,7 @@ class Headercomp extends HTMLElement {
             `
             const pEl = div.querySelector(".jugador-invitado")
             pEl.textContent = this.textContent
+            
 
             
  

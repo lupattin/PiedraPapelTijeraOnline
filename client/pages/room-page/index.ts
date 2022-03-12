@@ -20,11 +20,11 @@ class Roompage extends HTMLElement {
     }
     render(){
         /* Agrego elementos */
-        
+        console.log(state.getState())
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-                <header-comp>Contrincante</header-comp>
+                <header-comp owner-name = "${state.getState().users.nombre}">Contrincante</header-comp>
             
                 <text-comp variant = "paragraph">Compartí el codigo ${state.getState().rooms.id } con tu contrincante.</text-comp>
                 <text-comp variant = "paragraph">Y esperalo para comenzar ...</text-comp>

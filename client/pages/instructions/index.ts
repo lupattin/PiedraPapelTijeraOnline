@@ -12,17 +12,18 @@ class Instructions extends HTMLElement {
         /* Agrego elementos */
         const user = state.getState().users.nombre
         const currentState = state.getState().onlineRoom.owner
+        console.log(user, currentState)
         
          if(user == currentState){
             var invitedName = state.getState().onlineRoom.invited
         }else{
-            var invitedName = state.getState().onlineRoom.owner
+            var invitedName = user
         }
 
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-                <header-comp>${invitedName}</header-comp>
+                <header-comp owner-name = "${state.getState().onlineRoom.owner}">${invitedName}</header-comp>
             
                 <text-comp variant = "paragraph">Presioná jugar
                 y elegí: piedra, papel o tijera antes de que pasen los 3 segundos.</text-comp>

@@ -19,7 +19,7 @@ class Waiting extends HTMLElement {
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-                <header-comp>${state.getState().onlineRoom.invited}</header-comp>
+                <header-comp owner-name = "${state.getState().onlineRoom.owner}">${state.getState().onlineRoom.invited}</header-comp>
             
                 <text-comp variant = "paragraph">Esperando a que ${state.getState().onlineRoom.invited} haga su jugada.</text-comp>
                 
