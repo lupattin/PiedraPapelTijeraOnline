@@ -101,7 +101,7 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
             res.send("Room Created")
           })
         })
-        /* Si no funciona ELIMINAR ESTA RUTA */
+        /* */
         app.post('/invitedoff/:roomid', function (req, res) {
           const roomid = req.params.roomid
           const roomRef = realtimeDatabase.ref("rooms/" + roomid)
@@ -111,6 +111,32 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
             
           }).then(()=>{
             res.send("Invited Off")
+          })
+        })
+        /* */
+        app.post('/readyoff/:roomid', function (req, res) {
+          const roomid = req.params.roomid
+          const roomRef = realtimeDatabase.ref("rooms/" + roomid)
+          roomRef.update({
+            
+              invitedready: false
+            
+          }).then(()=>{
+            res.send("Invited Off")
+          })
+        })
+        /*  */
+        app.post('/playerready/:roomid/:user', function (req, res) {
+          const roomid = req.params.roomid
+          const user = req.params.user
+
+          const roomRef = realtimeDatabase.ref("rooms/" + roomid)
+          roomRef.update({
+            
+            [user]: true
+            
+          }).then(()=>{
+            res.send("Player Ready")
           })
         })
         /* Ruta Delete */

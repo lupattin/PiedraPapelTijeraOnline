@@ -37,7 +37,7 @@ class Logging extends HTMLElement {
             align-items: center;
             flex-direction: column;
             height: 782px;
-            
+            padding: 70px 0 0 0;
         }
         `
         this.shadow.appendChild(div)

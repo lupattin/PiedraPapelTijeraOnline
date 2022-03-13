@@ -26,7 +26,7 @@ class Instructions extends HTMLElement {
                 <header-comp owner-name = "${state.getState().onlineRoom.owner}">${invitedName}</header-comp>
             
                 <text-comp variant = "paragraph">Presioná jugar
-                y elegí: piedra, papel o tijera antes de que pasen los 3 segundos.</text-comp>
+                y elegí: piedra, papel o tijera antes de que pasen los 3 segundos, sino se eligirá automaticamente de forma aleatoria, asique ¡apuraté!.</text-comp>
                 <button-el type="button" button="¡Jugar!" id="button-jugar"></button-el>
                 
                 <div class="container-images">
@@ -56,8 +56,19 @@ class Instructions extends HTMLElement {
        
         const buttonNuevaPartidaEl = this.shadow.getElementById("button-jugar")
         buttonNuevaPartidaEl.addEventListener("click", ()=>{
-            
-            Router.go("game-page")
+            const user = state.getState().users.nombre
+            const currentState = state.getState().onlineRoom.owner
+            const roomId = state.getState().rooms.id
+        
+            if(user == currentState){
+             state.playerReady(roomId, "ownerready").then(()=>{
+                Router.go("waiting-page")
+             })
+            }else{
+             state.playerReady(roomId, "invitedready").then(()=>{
+                Router.go("waiting-page")
+             })
+            }
         })
     }
     

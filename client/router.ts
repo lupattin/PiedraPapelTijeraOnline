@@ -10,6 +10,7 @@ router.setRoutes([
   {path: '/logging-page', component: 'logging-comp'},
   {path: '/instructions', component: 'instructions-comp'},
   {path: '/game-page', component: 'game-comp'},
+  {path: '/waiting-play', component: 'waiting-play'},
   {path: '/waiting-page', component: 'waiting-comp'},
   {path: '/results-page', component: 'result-comp'},
   {path: '/tied-page', component: 'tied-comp'},

@@ -1,27 +1,23 @@
 import { Router } from "@vaadin/router";
 import { state } from "../../state";
-class Waiting extends HTMLElement {
+class Playwaiting extends HTMLElement {
     shadow: ShadowRoot
     constructor() {
       super(); 
       this.shadow = this.attachShadow({mode: 'open'});
       this.render()
-      state.subscribe(()=>{
-        this.render()
-        
-
-    })
     }
     
     render(){
-        /* Agrego elementos */
-        
+       
+
         const div = document.createElement("div")
         div.innerHTML=`
         <div class="container">
-                <header-comp owner-name = "${state.getState().onlineRoom.owner}">${state.getState().onlineRoom.invited}</header-comp>
+                
             
-                <text-comp variant = "paragraph">Esperando a que ${state.getState().onlineRoom.invited} le de a "jugar".</text-comp>
+                <text-comp variant = "paragraph"> Esperando Jugada de tu Rival... </text-comp>
+                
                 
                 <div class="container-images">
                     <imagen-el type = "piedra"></imagen-el>
@@ -40,20 +36,18 @@ class Waiting extends HTMLElement {
             align-items: center;
             flex-direction: column;
             height: 782px;
-            
+            padding: 70px 0 0 0;
         }
         `
         this.shadow.appendChild(div)
         this.shadow.appendChild(style)
 
         /* Logica del boton */
-        const currentGame = state.getState().onlineRoom
-        const roomId = state.getState().rooms.id
-        if(currentGame.ownerready && currentGame.invitedready == true){
-            Router.go("game-page")
-            state.readyOff(roomId)
-        }
+       
+        setTimeout(() => {
+            Router.go("results-page")
+        }, 3000)
     }
     
   }
-customElements.define("waiting-comp", Waiting);  
+customElements.define("waiting-play", Playwaiting);  

@@ -16,8 +16,10 @@ type onlineRoom = {
   owneronline:boolean,
   invited:string,
   invitedonline: boolean,
+  invitedready: boolean,
   ownerplay:string,
-  invitedplay:string
+  invitedplay:string,
+  ownerready:boolean
 }
 type Jugada = "piedra" | "papel" | "tijera";
 
@@ -107,6 +109,14 @@ export const state = {
       },
     })
   },
+  readyOff(roomid){
+    return fetch("/readyoff/" + roomid, {
+      method: "post",
+      headers: {
+        "content-type": "application/json"
+      },
+    })
+  },
   eliminitePlayerPlays(roomid){
     const currentState = state.getState().onlineRoom
     delete currentState.invitedplay
@@ -137,7 +147,14 @@ export const state = {
       }
     })
   },
-
+  playerReady(roomid, user){
+    return fetch("/playerready/" + roomid + "/" + user, {
+      method: "post",
+      headers: {
+        "content-type": "application/json"
+      },
+    })
+  },
   listeningRoom(roomid){
     const refRooms = ref(realTimedb,"rooms/" + roomid );
      onValue(refRooms, (snapshot) => {

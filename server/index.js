@@ -95,7 +95,7 @@ app.post('/room/:roomid/:user', function (req, res) {
         res.send("Room Created");
     });
 });
-/* Si no funciona ELIMINAR ESTA RUTA */
+/* */
 app.post('/invitedoff/:roomid', function (req, res) {
     var roomid = req.params.roomid;
     var roomRef = database_1.realtimeDatabase.ref("rooms/" + roomid);
@@ -103,6 +103,28 @@ app.post('/invitedoff/:roomid', function (req, res) {
         invitedonline: false
     }).then(function () {
         res.send("Invited Off");
+    });
+});
+/* */
+app.post('/readyoff/:roomid', function (req, res) {
+    var roomid = req.params.roomid;
+    var roomRef = database_1.realtimeDatabase.ref("rooms/" + roomid);
+    roomRef.update({
+        invitedready: false
+    }).then(function () {
+        res.send("Invited Off");
+    });
+});
+/*  */
+app.post('/playerready/:roomid/:user', function (req, res) {
+    var _a;
+    var roomid = req.params.roomid;
+    var user = req.params.user;
+    var roomRef = database_1.realtimeDatabase.ref("rooms/" + roomid);
+    roomRef.update((_a = {},
+        _a[user] = true,
+        _a)).then(function () {
+        res.send("Player Ready");
     });
 });
 /* Ruta Delete */
