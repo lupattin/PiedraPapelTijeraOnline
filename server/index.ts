@@ -119,7 +119,8 @@ app.post('/room/:roomid/:username/:play', (req, res) => {
           const roomRef = realtimeDatabase.ref("rooms/" + roomid)
           roomRef.update({
             
-              invitedready: false
+              invitedready: false,
+              ownerready: false
             
           }).then(()=>{
             res.send("Invited Off")
