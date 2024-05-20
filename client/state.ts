@@ -62,7 +62,7 @@ export const state = {
   
   setUser(name:string,){
     return fetch("/user", {
-    method: "post",
+    method: "POST",
     headers: {
       "content-type": "application/json"
     },
@@ -80,7 +80,7 @@ export const state = {
 
   createNewRoom(roomid, user){
     return fetch("/room", {
-      method: "post",
+      method: "POST",
       headers: {
         "content-type": "application/json"
       },
@@ -90,7 +90,7 @@ export const state = {
       })
       }).then(() => {
         fetch("/room/" + roomid + "/" + user,{
-      method: "post",
+      method: "POST",
       headers: {
         "content-type": "application/json"
       },
