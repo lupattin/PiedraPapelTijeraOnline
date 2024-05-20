@@ -16,6 +16,7 @@ const usersCollection = baseDeDatos.collection("users")
 const roomsCollection = baseDeDatos.collection("rooms")
 const roomsRtdbRef = realtimeDatabase.ref("rooms")
 const port = process.env.PORT || 3000
+console.log(port, __dirname);
 
 /* RUTAS GET */
 /* Ruta de testing */
