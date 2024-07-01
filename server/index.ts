@@ -3,6 +3,8 @@ import * as cors from "cors"
 import * as express from "express"
 import { send } from "process";
 
+const dotenv = require("dotenv")
+dotenv.config()
 /* Inicio Express */
 const app = express()
 

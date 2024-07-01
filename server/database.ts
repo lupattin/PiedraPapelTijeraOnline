@@ -1,13 +1,13 @@
 import * as admin from "firebase-admin"
 
-const serviceAccount = require("./key.json")
+const dotenv = require("dotenv")
+dotenv.config()
 
-
-
-
+const key = process.env.FIREBASE_KEY
+const json = JSON.parse(key)
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount as any),
+  credential: admin.credential.cert(json as any),
   databaseURL: "https://desafiofinal6-default-rtdb.firebaseio.com"
 });
 

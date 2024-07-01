@@ -1,8 +1,8 @@
 # PiedraPapelTijeraOnline
 
-HEROKU PAGE:
+PRODUCTION PAGE:
 
-https://piedra-papel-tijeras-online.herokuapp.com/
+https://piedrapapeltijeraonline.onrender.com/
 
 POSTMAN API DOCUMENTATION : 
 

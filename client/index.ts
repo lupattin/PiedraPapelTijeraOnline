@@ -28,7 +28,12 @@ import { Router } from "@vaadin/router"
 
 
 function main(){
+
     Router.go("/home-page")
+    const prueba = process.env.FIREBASE_KEY
+    const json = JSON.parse(prueba)
+    console.log(json);  
+    
     
 }
 
